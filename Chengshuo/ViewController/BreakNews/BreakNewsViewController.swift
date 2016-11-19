@@ -28,12 +28,12 @@ class BreakNewsViewController: BaseViewController {
         
         
         
-        
+        webView?.isOpaque = false
+        webView?.backgroundColor = UIColor.white
         let urlRequest = URLRequest(url: url!, cachePolicy: .reloadIgnoringCacheData, timeoutInterval: 15)
         
         webView?.loadRequest(urlRequest)
         //webView?.delegate =  self
-        view.backgroundColor = UIColor.cyan
         view.addSubview(webView!)
         
         
