@@ -30,15 +30,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         testCode()
-        
-        
-        
         self.window = UIWindow(frame:UIScreen.main.bounds)
-        
         self.window!.backgroundColor = UIColor.white
-        let tabbar = RootViewController();
-        self.window!.rootViewController = tabbar;
-        self.window!.makeKeyAndVisible()
+        if(UserDefaults.standard.bool(forKey:"firstLaunch")==false){//第一次启动
+            let loginNav = BaseNavigationController(rootViewController: LoginViewController())
+            self.window!.rootViewController = loginNav;
+            UserDefaults.standard.set(true, forKey: "firstLaunch")
+            UserDefaults.standard.synchronize()//强制同步数据到UserDefaults
+        }else{//第n次启动，n>1
+            self.window!.rootViewController = RootViewController();
+        }
+        
+        
+                self.window!.makeKeyAndVisible()
         
         //1、接收返回值，并用这个返回值
         //2、_ 在swift中，所有你想忽略，你想略过，你不关心的参数，都可以用 _ 去忽略

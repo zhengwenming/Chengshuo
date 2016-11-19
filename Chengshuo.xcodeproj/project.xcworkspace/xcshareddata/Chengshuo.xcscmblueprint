@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "2713F8006300BD49725414EB199334E46E44517D",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "2713F8006300BD49725414EB199334E46E44517D" : 9223372036854775807,
+    "1EEB23244A8CA920AFC1918D04BBF6CB0D6BF90F" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "1ACAE063-63C6-4A45-BADA-005CD5A096AC",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "2713F8006300BD49725414EB199334E46E44517D" : "Chengshuo\/",
+    "1EEB23244A8CA920AFC1918D04BBF6CB0D6BF90F" : ""
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "Chengshuo",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "Chengshuo.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/zhengwenming\/WMPlayer.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "1EEB23244A8CA920AFC1918D04BBF6CB0D6BF90F"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/zhengwenming\/Chengshuo.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "2713F8006300BD49725414EB199334E46E44517D"
+    }
+  ]
+}
