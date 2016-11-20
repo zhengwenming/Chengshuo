@@ -8,6 +8,8 @@
 
 
 import UIKit
+import Alamofire
+
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -32,6 +34,51 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         
 
+        
+        var  orderArray:Array<Dictionary<String, Any>> = []
+        
+        orderArray.append([orderKey:"endtype=i"])
+        orderArray.append([orderKey:"partnerid=\(partnerid)"])
+        orderArray.append([orderKey:"timestamp=\(WMUtil.currentTime())"])
+        
+        print(orderArray);
+        
+        //postDic需要的参数
+        var postDic:Dictionary <String,Any> = [:]
+        
+        //系统参数
+        postDic["partnerid"]    = WMUtil.encondeBase64(aInputString:partnerid)
+        postDic["sign"]         = WMUtil.makeSignWithParamArray(aInputArray:orderArray);
+        postDic["timestamp"]    = WMUtil.encondeBase64(aInputString: WMUtil.currentTime())
+        //业务参数
+        postDic["endtype"]       = WMUtil.encondeBase64(aInputString:"i")
+
+        
+        print(postDic);
+        
+        
+        
+        Alamofire.request(focusPic_URL, method: .get, parameters: postDic, encoding: JSONEncoding.default)
+            .downloadProgress(queue: DispatchQueue.global(qos: .utility)) { progress in
+                print("Progress: \(progress.fractionCompleted)")
+            }
+            .validate { request, response, data in
+                //把Data对象转换回JSON对象
+                let json = try? JSONSerialization.jsonObject(with: data!,
+                                                             options:.allowFragments) as! [String: Any]
+                print("Json Object:", json)
+                
+                return .success
+            }
+            .responseJSON { response in
+                debugPrint(response)
+        }
+        
+        
+        
+        
+        
+        
         
         
 

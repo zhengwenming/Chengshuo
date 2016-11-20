@@ -21,7 +21,7 @@ class LoginViewController: BaseViewController {
     
     
     
-     let BaiduURL = "http://apis.haoservice.com/lifeservice/cook/query"
+     let BaiduURL = "http://ipad-bjwb.bjd.com.cn/DigitalPublication/publish/Handler/APINewsList.ashx?date=20151031&startRecord=1&len=5&udid=1234567890&terminalType=Iphone&cid=213"
     let PicURL = "http://weixintest.ihk.cn/ihkwx_upload/commentPic/20160426/14616659617000.jpg"
 
     
@@ -48,8 +48,64 @@ class LoginViewController: BaseViewController {
         
         Alamofire.request(BaiduURL).responseJSON { (response) in
             print(response)
+            }.validate { request, response, data in
+                //把Data对象转换回JSON对象
+                let json = try? JSONSerialization.jsonObject(with: data!,
+                                                             options:.allowFragments) as! [String: Any]
+                print("Json Object:", json)
+                
+                return .success
         }
 
+        
+        
+        
+        
+        var  orderArray:Array<Dictionary<String, Any>> = []
+        
+        orderArray.append([orderKey:"topnum=10"])
+        orderArray.append([orderKey:"keystr="])
+        
+        orderArray.append([orderKey:"partnerid=\(partnerid)"])
+        orderArray.append([orderKey:"timestamp=\(WMUtil.currentTime())"])
+        orderArray.append([orderKey:"isrec=true"])
+        
+        print(orderArray);
+        
+        //postDic需要的参数
+        var postDic:Dictionary <String,Any> = [:]
+        
+        //系统参数
+        postDic["partnerid"]    = WMUtil.encondeBase64(aInputString: partnerid)
+        postDic["sign"]         = WMUtil.makeSignWithParamArray(aInputArray:orderArray);
+        postDic["timestamp"]    = WMUtil.encondeBase64(aInputString: WMUtil.currentTime())
+        //业务参数
+        postDic["topnum"]       = WMUtil.encondeBase64(aInputString:"10")
+        postDic["isrec"]        = WMUtil.encondeBase64(aInputString:"true")
+        postDic["keystr"]     = ""
+        
+        print(postDic);
+
+        
+        
+        Alamofire.request(tag_URL, method: .get, parameters: postDic, encoding: JSONEncoding.default)
+            .downloadProgress(queue: DispatchQueue.global(qos: .utility)) { progress in
+                print("Progress: \(progress.fractionCompleted)")
+            }
+            .validate { request, response, data in
+                //把Data对象转换回JSON对象
+                let json = try? JSONSerialization.jsonObject(with: data!,
+                                                             options:.allowFragments) as! [String: Any]
+                print("Json Object:", json)
+                
+                return .success
+            }
+            .responseJSON { response in
+                debugPrint(response)
+        }
+        
+        
+        
         
         
     }
@@ -73,11 +129,11 @@ class LoginViewController: BaseViewController {
         
         var  orderArray:Array<Dictionary<String, Any>> = []
         
-        orderArray.append([orderKey:"username = \(username)"])
-        orderArray.append([orderKey:"password = \(password)"])
-        orderArray.append([orderKey:"partnerid = \(partnerid)"])
-        orderArray.append([orderKey:"timestamp = \(WMUtil.currentTime())"])
-        orderArray.append([orderKey:"passwordtype = \(String(0))"])
+        orderArray.append([orderKey:"username=\(username)"])
+        orderArray.append([orderKey:"password=\(password)"])
+        orderArray.append([orderKey:"partnerid=\(partnerid)"])
+        orderArray.append([orderKey:"timestamp=\(WMUtil.currentTime())"])
+        orderArray.append([orderKey:"passwordtype=\(String(0))"])
 
         print(orderArray);
         
