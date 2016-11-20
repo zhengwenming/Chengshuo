@@ -29,6 +29,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     //swift中没有宏，let（定义常量,他是线程安全的，可以用来做单例） var （变量）
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
+        
+        
+
+        
+        
+
+        
+
+        
         testCode()
         self.window = UIWindow(frame:UIScreen.main.bounds)
         self.window!.backgroundColor = UIColor.white
@@ -38,7 +47,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             UserDefaults.standard.set(true, forKey: "firstLaunch")
             UserDefaults.standard.synchronize()//强制同步数据到UserDefaults
         }else{//第n次启动，n>1
-            self.window!.rootViewController = RootViewController();
+            if(UserDefaults.standard.bool(forKey:"login")==false){//是否已经登录
+                let loginNav = BaseNavigationController(rootViewController: LoginViewController())
+                self.window!.rootViewController = loginNav;
+            }else{
+                self.window!.rootViewController = RootViewController();
+            }
         }
         
         

@@ -19,7 +19,7 @@ class BaseViewController: UIViewController {
         
         UIApplication.shared.statusBarStyle = .lightContent
         
-
+        view.backgroundColor = UIColor.white
         
     
     

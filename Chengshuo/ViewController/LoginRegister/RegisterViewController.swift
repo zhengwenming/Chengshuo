@@ -12,7 +12,7 @@ class RegisterViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        title = "注册"
 
     }
 

@@ -8,7 +8,7 @@
 
 import UIKit
 
-
+//常量字符串
 public let  signKey     =   "abcdefg1234567"
 public let  partnerid   =   "1000000000"
 public let  orderKey    =   "orderKey"
